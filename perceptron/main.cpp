@@ -9,7 +9,13 @@ int main()
 {
 int window_width = 1000;
 int window_height = 1000;
-sf::RenderWindow window(sf::VideoMode(window_width, window_height), "My window");
+sf::RenderWindow window(sf::VideoMode(window_width, window_height), "Press Space to Train the Model");
+
+sf::Vertex line[] =
+{
+    sf::Vertex(sf::Vector2f(0, 0)),
+    sf::Vertex(sf::Vector2f(window_width, window_height))
+};
 
 //perceptron model
 Perceptron perceptron;
@@ -31,11 +37,33 @@ while (window.pollEvent(event))
 {
 if (event.type == sf::Event::Closed)
 window.close();
+
+//model training
+if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+for(Point point : dataset){
+float input[2] = {point.x, point.y};
+perceptron.train(input, point.result);
+}
+}
+
+
 }
 //gameloop
 
 window.clear(sf::Color::Black);
+window.draw(line, 2, sf::Lines);
+
 for(Point point : dataset){
+float input[2] = {point.x , point.y};
+int guess = perceptron.guess(input);
+//plot data in red if model predicts wrong
+if(guess != point.result){
+point.circle.setFillColor(sf::Color::Red);
+}
+//plot data in green if right prediction
+else{
+point.circle.setFillColor(sf::Color::Green);
+}
 point.draw(window);
 }
 window.display();

@@ -30,3 +30,15 @@ sum += input[i] * weights[i];
 
 return sign(sum);
 }
+
+void Perceptron::train(float input[], int result){
+
+//result is the expected data
+int guess_result = guess(input);
+int error = result - guess_result;
+
+for(int i = 0; i< sizeof(weights)/sizeof(weights[0]); i++){
+weights[i] += error * input[i] * lr;
+}
+
+}
