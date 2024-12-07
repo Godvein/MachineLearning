@@ -15,6 +15,10 @@ This implementation is inspired by the tutorial on **YouTube**:
 
 Special thanks to this excellent resource for providing a clear and concise explanation of the underlying concepts!
 
+## Running .exe 
+For linux the .exe is dynamically linked so it wont work until you run sudo apt install libsfml-dev
+For windows .exe is statically linked so no need to install .dll files
+
 ## Contributing
 
 Contributions are welcome! If you find a bug, have a feature request, or want to improve the project, feel free to open an issue or submit a pull request.
