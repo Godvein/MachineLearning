@@ -1,28 +1,12 @@
-# Neural Network in C++
+# Machine Learning in C++
 
-This repository contains a neural network implementation in C++ from scratch. The goal is to understand the fundamental concepts of neural networks and how they can be implemented without relying on external libraries.
+## Overview
+This repository contains various **Machine Learning (ML) algorithms** implemented in C++. It includes fundamental concepts like **Perceptrons** for classification and **Minimax Algorithm** for decision-making in games.
 
-## Features
-
-- **Custom Implementation**: Built from the ground up using C++.
-- **Educational Focus**: Demonstrates how neural networks work internally.
-- **Scalable Design**: Modular structure for easy expansion and experimentation.
-
-## Learning Resources
-
-This implementation is inspired by the tutorial on **YouTube**:  
-[**Neural Network in C++ from Scratch**](https://www.youtube.com/watch?v=ntKn5TPHHAk&t=945s) by *The Cherno*.
-
-Special thanks to this excellent resource for providing a clear and concise explanation of the underlying concepts!
-
-## Running .exe 
-For linux the .exe is dynamically linked so it wont work until you run sudo apt install libsfml-dev
-For windows .exe is statically linked so no need to install .dll files
-
-## Contributing
-
-Contributions are welcome! If you find a bug, have a feature request, or want to improve the project, feel free to open an issue or submit a pull request.
+## Contents
+- **Perceptron** – A simple neural network for binary classification.
+- **Minimax Algorithm** – A decision-making algorithm for game AI.
 
 ## License
+Feel free to use and contribute!
 
-This project is licensed under the MIT License. See the `LICENSE` file for details.
