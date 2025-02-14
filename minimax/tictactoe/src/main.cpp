@@ -9,6 +9,12 @@ const int window_width = 1000;
 const int window_height = 800;
 bool player_turn = true;
 
+char player = 'X';
+char bot = 'O';
+
+//default no winner
+std::string winner = "n";
+
 sf::Vector2i position;
 	
 sf::RenderWindow window(sf::VideoMode(window_width, window_height), "TicTacToe");
@@ -24,19 +30,22 @@ if (event.type == sf::Event::Closed)
 window.close();
 }
 
-//get mouse position on click while player turn
+//get mouse position on click if player turn
 if(player_turn){
 if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
 position = sf::Mouse::getPosition(window);
-game.updatePlayer(player_turn, position);
+game.updatePlayer(player_turn, position, player);
 
 }
 }
 //else bots turn
 else{
-game.updateBot(player_turn);
+game.updateBot(player_turn, bot);
 }
 
+//check for winner
+winner = game.checkWinner();
+std::cout << winner;
 
 //draw loop
 window.clear(sf::Color::Black);

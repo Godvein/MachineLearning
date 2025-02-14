@@ -17,8 +17,9 @@ std::string board[3][3] = {
 public:
 
 void initialize();
-void updatePlayer(bool& player_turn, sf::Vector2i position);
-void updateBot(bool& player_turn);
+void updatePlayer(bool& player_turn, sf::Vector2i position, char player);
+void updateBot(bool& player_turn, char bot);
+std::string checkWinner();
 void draw(sf::RenderWindow& window);
 
 };
