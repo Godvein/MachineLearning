@@ -32,6 +32,10 @@ game.updatePlayer(player_turn, position);
 
 }
 }
+//else bots turn
+else{
+game.updateBot(player_turn);
+}
 
 
 //draw loop

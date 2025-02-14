@@ -12,6 +12,7 @@ std::cout << "font loaded";
 }
 }
 
+//players turn
 void Game::updatePlayer(bool& player_turn, sf::Vector2i position){
 for(int i=0; i<3; i++){
 for(int j=0; j<3; j++){
@@ -23,13 +24,27 @@ float bottom = top + section_size;
 
 //check if mouse position is in the section
 if(position.x >= left && position.x <= right && position.y >= top && position.y <= bottom){
+if(board[i][j] != "O" && board[i][j] != "X"){
 board[i][j] = "X";
 player_turn = false;
 }
 }
 }
 }
+}
 
+//bots turn
+void Game::updateBot(bool& player_turn){
+std::srand(std::time(0));
+int randomx = std::rand() % 3;	
+int randomy = std::rand() % 3;	
+if(board[randomx][randomy] != "X" && board[randomx][randomy] != "O" ){
+board[randomx][randomy] = "O";
+player_turn = true;
+}
+}
+
+//function to draw the game
 void Game::draw(sf::RenderWindow& window){
 for(int i=0; i<3; i++){
 for(int j=0; j<3; j++){

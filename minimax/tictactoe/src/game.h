@@ -18,6 +18,7 @@ public:
 
 void initialize();
 void updatePlayer(bool& player_turn, sf::Vector2i position);
+void updateBot(bool& player_turn);
 void draw(sf::RenderWindow& window);
 
 };
