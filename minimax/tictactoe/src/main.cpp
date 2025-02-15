@@ -14,6 +14,7 @@ char bot = 'O';
 
 //default no winner
 std::string winner = "n";
+bool game_over = false;
 
 sf::Vector2i position;
 	
@@ -45,7 +46,9 @@ game.updateBot(player_turn, bot);
 
 //check for winner
 winner = game.checkWinner();
-std::cout << winner;
+
+//check if game is over
+game_over = game.gameOver();
 
 //draw loop
 window.clear(sf::Color::Black);

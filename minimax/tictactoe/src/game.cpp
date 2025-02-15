@@ -1,5 +1,7 @@
 #include "game.h"
 #include <iostream>	
+#include <limits>
+#include "algorithms.h"
 	
 void Game::initialize(){
 
@@ -35,13 +37,32 @@ player_turn = false;
 
 //bots turn
 void Game::updateBot(bool& player_turn, char bot){
-std::srand(std::time(0));
-int randomx = std::rand() % 3;	
-int randomy = std::rand() % 3;	
-if(board[randomx][randomy] != "X" && board[randomx][randomy] != "O" ){
-board[randomx][randomy] = bot;
-player_turn = true;
+//minimun evaluation
+int min_eval = std::numeric_limits<int>::max();
+
+int bestmoves[2] = {-1,-1};
+
+for(int i=0; i<3; i++){
+for(int j=0; j<3; j++){
+
+//perform minimax on available positions
+if(board[i][j] != "X" && board[i][j] != "O" ){
+board[i][j] = bot;
+int eval = Algorithms::minimax(board, 9, true);
+board[i][j] = "";
+if(eval < min_eval){
+min_eval = eval;
+bestmoves[0] = i;
+bestmoves[1] = j;
 }
+}
+}
+}
+if(bestmoves[0] == -1 && bestmoves[1] == -1){
+return;
+}
+board[bestmoves[0]][bestmoves[1]] = bot;
+player_turn = true;
 }
 
 //function to check winner
@@ -70,6 +91,17 @@ return board[0][2];
 return "n";
 }
 
+//check if gameOver
+bool Game::gameOver(){
+for(int i=0; i<3; i++){
+for(int j=0; j<3; j++){
+if(board[i][j] == ""){
+return false;
+}
+}
+}
+return true;
+}
 
 //function to draw the game
 void Game::draw(sf::RenderWindow& window){
