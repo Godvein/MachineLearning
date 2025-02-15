@@ -8,5 +8,5 @@ This repository contains various **Machine Learning (ML) algorithms** implemente
 - **Minimax** - Minimax is a kind of backtracking algorithm that is used in decision making and game theory to find the optimal move for a player, assuming that your opponent also plays optimally.
 
 ## License
-MIT Licence
+MIT License
 
