@@ -6,12 +6,12 @@ This project is an implementation of the classic Tic-Tac-Toe game using the **Mi
 
 The **Minimax algorithm** is a decision-making algorithm used in two-player turn-based games like Tic-Tac-Toe, Chess, and Connect Four. It follows these principles:  
 
-1. **Maximizing Player (AI)** tries to get the highest possible score.  
-2. **Minimizing Player (Human)** tries to force the lowest possible score for the AI.  
+1. **Maximizing Player** tries to get the highest possible score.  
+2. **Minimizing Player** tries to force the lowest possible score for the AI.  
 3. The algorithm explores all possible moves, evaluates board states, and selects the best possible move.  
 4. It uses **recursion** to simulate future moves and assigns scores to different outcomes:  
-   - **+1** for AI winning  
-   - **-1** for Human winning  
+   - **+10** for maximizing player winning  
+   - **-10** for minimizing player winning  
    - **0** for a draw  
 
 This ensures that the AI never loses and always plays optimally.  
