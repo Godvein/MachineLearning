@@ -36,7 +36,7 @@ player_turn = false;
 }
 
 //bots turn
-void Game::updateBot(bool& player_turn, char bot){
+void Game::updateBot(bool& player_turn, char bot, int depth){
 //minimun evaluation
 int min_eval = std::numeric_limits<int>::max();
 
@@ -48,7 +48,7 @@ for(int j=0; j<3; j++){
 //perform minimax on available positions
 if(board[i][j] != "X" && board[i][j] != "O" ){
 board[i][j] = bot;
-int eval = Algorithms::minimax(board, 9, true);
+int eval = Algorithms::minimax(board, depth, true);
 board[i][j] = "";
 if(eval < min_eval){
 min_eval = eval;

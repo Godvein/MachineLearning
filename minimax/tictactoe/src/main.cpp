@@ -16,9 +16,26 @@ char bot = 'O';
 std::string winner = "n";
 bool game_over = false;
 
+//search depth 
+int depth = 9;
+
 sf::Vector2i position;
 	
 sf::RenderWindow window(sf::VideoMode(window_width, window_height), "TicTacToe");
+
+//winner declaration text
+sf::Font font;
+if (!font.loadFromFile("Fonts/Arial.ttf")){
+std::cout << "font not loaded";
+}else{
+std::cout << "font loaded";
+}
+sf::Text winnerText;
+winnerText.setFont(font);
+winnerText.setPosition(sf::Vector2f(400.f,100.f));
+winnerText.setFillColor(sf::Color::White);
+winnerText.setCharacterSize(30);
+
 Game game;
 game.initialize();
 
@@ -41,7 +58,7 @@ game.updatePlayer(player_turn, position, player);
 }
 //else bots turn
 else{
-game.updateBot(player_turn, bot);
+game.updateBot(player_turn, bot, depth);
 }
 
 //check for winner
@@ -50,8 +67,17 @@ winner = game.checkWinner();
 //check if game is over
 game_over = game.gameOver();
 
+if(winner == "X"){
+winnerText.setString("X wins");
+}else if(winner == "O"){
+winnerText.setString("O wins");
+}else{
+winnerText.setString("Good Luck");
+}
+
 //draw loop
 window.clear(sf::Color::Black);
+window.draw(winnerText);
 game.draw(window);
 window.display();
 }
