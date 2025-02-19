@@ -1,6 +1,12 @@
 # Tic-Tac-Toe with Minimax Algorithm  
 
 This project is an implementation of the classic Tic-Tac-Toe game using the **Minimax algorithm** for AI decision-making. The goal is to create an unbeatable AI opponent that plays optimally in every situation.  
+## Demo Video
+Watch a short demo of minimax algorithm in action:
+
+https://github.com/user-attachments/assets/fed5a1bc-150a-4364-af94-1b86b6dab086
+
+
 
 ## Minimax Algorithm Overview  
 
