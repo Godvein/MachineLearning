@@ -10,7 +10,7 @@ This project is a **2D prey-predator simulation** where two species interact in 
   - Prey and predators inherit traits from parents.
   - Random mutations in speed, vision, and other stats.
   - Natural selection: The best-adapted individuals survive and reproduce.
-- **Grid-Based World**: Efficient food detection and movement logic.
+
 
 ## 🏗️ How It Works
 ### **Genetic Algorithm Process**
