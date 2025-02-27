@@ -3,17 +3,17 @@
 class Point{
 
 
-public:
+	public:
 
-float x;
-float y;
-int result;
+		float x;
+		float y;
+		int result;
 
-sf::CircleShape circle;
-public:
+		sf::CircleShape circle;
+	public:
 
-void initialize(int width, int height);
-void draw(sf::RenderWindow& window);
+		void initialize(int width, int height);
+		void draw(sf::RenderWindow& window);
 
 };
 

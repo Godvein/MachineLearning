@@ -6,13 +6,13 @@
 
 class PreyManager{
 
-private:
-std::vector<Prey> preys;
+	private:
+		std::vector<Prey> preys;
 
-public:
+	public:
 
-void initialize();
-void update(float deltatime);
-void draw(sf::RenderWindow& window);
+		void initialize();
+		void update(float deltatime);
+		void draw(sf::RenderWindow& window);
 };
 

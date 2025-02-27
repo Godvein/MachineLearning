@@ -2,8 +2,8 @@
 
 class NeuralMath{
 
-public:
+	public:
 
-static float randomFloat(float low, float high);
+		static float randomFloat(float low, float high);
 
 };

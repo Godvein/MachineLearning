@@ -4,83 +4,83 @@
 
 int main(){
 
-//variables and objects initialization
-const int window_width = 1000;
-const int window_height = 800;
-bool player_turn = true;
+	//variables and objects initialization
+	const int window_width = 1000;
+	const int window_height = 800;
+	bool player_turn = true;
 
-char player = 'X';
-char bot = 'O';
+	char player = 'X';
+	char bot = 'O';
 
-//default no winner
-std::string winner = "n";
-bool game_over = false;
+	//default no winner
+	std::string winner = "n";
+	bool game_over = false;
 
-//search depth 
-int depth = 9;
+	//search depth 
+	int depth = 9;
 
-sf::Vector2i position;
-	
-sf::RenderWindow window(sf::VideoMode(window_width, window_height), "TicTacToe");
+	sf::Vector2i position;
 
-//winner declaration text
-sf::Font font;
-if (!font.loadFromFile("Fonts/Arial.ttf")){
-std::cout << "font not loaded";
-}else{
-std::cout << "font loaded";
-}
-sf::Text winnerText;
-winnerText.setFont(font);
-winnerText.setPosition(sf::Vector2f(400.f,100.f));
-winnerText.setFillColor(sf::Color::White);
-winnerText.setCharacterSize(30);
+	sf::RenderWindow window(sf::VideoMode(window_width, window_height), "TicTacToe");
 
-Game game;
-game.initialize();
+	//winner declaration text
+	sf::Font font;
+	if (!font.loadFromFile("Fonts/Arial.ttf")){
+		std::cout << "font not loaded";
+	}else{
+		std::cout << "font loaded";
+	}
+	sf::Text winnerText;
+	winnerText.setFont(font);
+	winnerText.setPosition(sf::Vector2f(400.f,100.f));
+	winnerText.setFillColor(sf::Color::White);
+	winnerText.setCharacterSize(30);
 
-//window code
-while (window.isOpen()){
-sf::Event event;
-while (window.pollEvent(event))
-{
-if (event.type == sf::Event::Closed)
-window.close();
-}
+	Game game;
+	game.initialize();
 
-//get mouse position on click if player turn
-if(player_turn){
-if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-position = sf::Mouse::getPosition(window);
-game.updatePlayer(player_turn, position, player);
+	//window code
+	while (window.isOpen()){
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window.close();
+		}
 
-}
-}
-//else bots turn
-else{
-game.updateBot(player_turn, bot, depth);
-}
+		//get mouse position on click if player turn
+		if(player_turn){
+			if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+				position = sf::Mouse::getPosition(window);
+				game.updatePlayer(player_turn, position, player);
 
-//check for winner
-winner = game.checkWinner();
+			}
+		}
+		//else bots turn
+		else{
+			game.updateBot(player_turn, bot, depth);
+		}
 
-//check if game is over
-game_over = game.gameOver();
+		//check for winner
+		winner = game.checkWinner();
 
-if(winner == "X"){
-winnerText.setString("X wins");
-}else if(winner == "O"){
-winnerText.setString("O wins");
-}else{
-winnerText.setString("Good Luck");
-}
+		//check if game is over
+		game_over = game.gameOver();
 
-//draw loop
-window.clear(sf::Color::Black);
-window.draw(winnerText);
-game.draw(window);
-window.display();
-}
+		if(winner == "X"){
+			winnerText.setString("X wins");
+		}else if(winner == "O"){
+			winnerText.setString("O wins");
+		}else{
+			winnerText.setString("Good Luck");
+		}
 
-return 0;
+		//draw loop
+		window.clear(sf::Color::Black);
+		window.draw(winnerText);
+		game.draw(window);
+		window.display();
+	}
+
+	return 0;
 }
