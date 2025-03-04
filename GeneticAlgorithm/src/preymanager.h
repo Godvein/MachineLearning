@@ -13,6 +13,8 @@ class PreyManager{
 
 		void initialize();
 		void update(float deltatime);
+		void checkPreyCollision();
+		void Reproduce(float i, float j);
 		void draw(sf::RenderWindow& window);
 };
 

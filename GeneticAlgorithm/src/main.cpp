@@ -31,6 +31,7 @@ int main(){
 
 		//game logic
 		preymanager.update(deltatime);
+		preymanager.checkPreyCollision();
 
 		window.clear(sf::Color::Black);
 		preymanager.draw(window);

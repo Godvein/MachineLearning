@@ -37,7 +37,7 @@ void Prey::setDirection(float deltatime){
 
 	direction_timer += deltatime;
 	//set new direction every 3 seconds
-	if(direction_timer > 3000){
+	if(direction_timer > 10000){
 		dir_x = rand() % 1001;
 		dir_y = rand() %  801;
 
