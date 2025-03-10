@@ -27,7 +27,7 @@ int main(){
 		//gameloop
 
 		//delta time
-		deltatime = clock.restart().asMilliseconds();
+		deltatime = clock.restart().asSeconds();
 
 		//game logic
 		preymanager.update(deltatime);

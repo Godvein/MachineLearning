@@ -5,7 +5,7 @@
 
 void Prey::initialize(){
 
-	speed = 0.01f;
+	speed = 5.f;
 	size = 5.f;
 	body.setRadius(size);
 	body.setFillColor(sf::Color::White);
@@ -29,15 +29,15 @@ void Prey::move(float deltatime){
 
 	//prey move if target distance is greater than 5
 	if((diff_x > 5) && (diff_y > 5)){
-		body.setPosition(body.getPosition() + difference * (speed * deltatime));
+		body.setPosition(body.getPosition() + difference * speed * deltatime);
 	}
 }
 
 void Prey::setDirection(float deltatime){
 
 	direction_timer += deltatime;
-	//set new direction every 3 seconds
-	if(direction_timer > 10000){
+	//set new direction every 10 seconds
+	if(direction_timer > 10.0f){
 		dir_x = rand() % 1001;
 		dir_y = rand() %  801;
 
