@@ -2,6 +2,8 @@
 #include <iostream>
 #include <cmath>
 #include <iomanip>
+#include "gamemath.h"
+
 void PreyManager::initialize(){
 
 	for(int i = 0; i<2; i++){
@@ -22,15 +24,7 @@ void PreyManager::checkPreyCollision(){
 
 	for(int i = 0; i<preys.size(); i++){
 		for(int j = 0; j<preys.size(); j++){
-
-			sf::Vector2f pos1 = preys[i].body.getPosition() + (sf::Vector2f(preys[i].body.getRadius(), preys[i].body.getRadius()));
-			sf::Vector2f pos2 = preys[j].body.getPosition() + (sf::Vector2f(preys[j].body.getRadius(), preys[j].body.getRadius()));
-
-			float distance = std::sqrt(std::pow(pos2.x - pos1.x, 2) + std::pow(pos2.y - pos1.y, 2));
-			float radiusSum = preys[i].body.getRadius() + preys[j].body.getRadius(); 
-			bool collided;
-
-			collided = distance <= radiusSum;
+			bool collided = GameMath::checkCollision(preys[i].body, preys[j].body);
 			
 			//check if parents can reproduce 
 			if((collided && preys[i].canReproduce && preys[j].canReproduce) && (i != j)){
@@ -39,6 +33,16 @@ void PreyManager::checkPreyCollision(){
 
 		}
 	}
+}
+
+void PreyManager::checkPreyFoodCollision(FoodManager& foodmanager){
+	for(int i =0; i<preys.size(); i++){
+		bool collided = foodmanager.checkFoodCollision(preys[i].body);
+		if(collided){
+			preys[i].canReproduce = true;
+		}
+	}
+
 }
 
 void PreyManager::Reproduce(float i, float j){

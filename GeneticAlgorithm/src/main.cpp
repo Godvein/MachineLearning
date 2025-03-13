@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "preymanager.h"
+#include "foodmanager.h"
 
 int main(){
 	const int window_width = 1000;
@@ -13,6 +14,10 @@ int main(){
 	PreyManager preymanager;
 	preymanager.initialize();
 
+	//FOOD MANAGER
+	FoodManager foodmanager;
+	foodmanager.initialize();
+	
 	sf::Clock clock;
 	float deltatime = 0.f;
 
@@ -32,9 +37,11 @@ int main(){
 		//game logic
 		preymanager.update(deltatime);
 		preymanager.checkPreyCollision();
+		preymanager.checkPreyFoodCollision(foodmanager);
 
 		window.clear(sf::Color::Black);
 		preymanager.draw(window);
+		foodmanager.draw(window);
 		window.display();
 	}
 	return 0;
