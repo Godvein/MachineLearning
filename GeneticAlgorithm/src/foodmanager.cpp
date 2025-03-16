@@ -1,6 +1,8 @@
 #include "foodmanager.h"
 #include "gamemath.h"
 #include <iostream>	
+#include "prey.h"
+
 void FoodManager::initialize(){
 
 for(int i = 0; i < food_limit; i++){
@@ -14,10 +16,10 @@ for(int i = 0; i < food_limit; i++){
 
 }
 
-bool FoodManager::checkFoodCollision(sf::CircleShape prey){
+bool FoodManager::checkFoodCollision(Prey& prey){
 	for(int i = 0; i < foods.size(); i++){
-		bool collided = GameMath::checkCollision(prey, foods[i]);
-		if (collided){
+		bool collided = GameMath::checkCollision(prey.body, foods[i]);
+		if (collided && prey.isHungry){
 			foods.erase(foods.begin() + i);
 			return true;
 		}

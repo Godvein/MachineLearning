@@ -2,6 +2,8 @@
 #include <cstdlib>
 #include "gamemath.h"
 #include <iostream>
+#include "foodmanager.h"
+#include "preymanager.h"
 
 void Prey::initialize(){
 
@@ -17,35 +19,41 @@ void Prey::move(float deltatime){
 	sf::Vector2f difference = sf::Vector2f(dir_x, dir_y) - body.getPosition();
 
 	difference = GameMath::normalizeVector(difference);
-	float diff_x = body.getPosition().x - dir_x;
-	float diff_y = body.getPosition().y - dir_y;
 
-	//logic to avoid flickering and position changing when close to target distance
-	if(diff_x < 0)
-		diff_x = diff_x * -1;
-
-	if(diff_y < 0)
-		diff_y = diff_y * -1;
-
-	//prey move if target distance is greater than 5
-	if((diff_x > 5) && (diff_y > 5)){
 		body.setPosition(body.getPosition() + difference * speed * deltatime);
-	}
 }
 
-void Prey::setDirection(float deltatime){
+void Prey::setDirection(float deltatime, FoodManager& foodmanager){
 
 	direction_timer += deltatime;
 	//set new direction every 10 seconds
-	if(direction_timer > 10.0f){
+	if(direction_timer > 10.0f && !isHungry ){
 		dir_x = rand() % 1001;
 		dir_y = rand() %  801;
 
 		direction_timer = 0;
 	}
-
+	if(isHungry){
+	goToFood(foodmanager);
+		
+}
 }
 
+void Prey::goToFood(FoodManager& foodmanager){
+	sf::Vector2f nearestfood = foodmanager.foods[0].getPosition();
+	float distance = GameMath::checkDistance(body, foodmanager.foods[0]);	
+	for(int i=1; i<foodmanager.foods.size(); i++){
+	
+	float new_distance = GameMath::checkDistance(body, foodmanager.foods[i]);
+	if(distance > new_distance){
+	nearestfood = foodmanager.foods[i].getPosition();
+	distance = new_distance;
+}
+}
+dir_x = nearestfood.x;
+dir_y = nearestfood.y;
+}
+	
 void Prey::draw(sf::RenderWindow& window){
 	window.draw(body);
 }

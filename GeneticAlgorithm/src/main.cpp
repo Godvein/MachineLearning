@@ -35,7 +35,7 @@ int main(){
 		deltatime = clock.restart().asSeconds();
 
 		//game logic
-		preymanager.update(deltatime);
+		preymanager.update(deltatime, foodmanager);
 		preymanager.checkPreyCollision();
 		preymanager.checkPreyFoodCollision(foodmanager);
 

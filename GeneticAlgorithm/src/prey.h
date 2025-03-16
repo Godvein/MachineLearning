@@ -1,6 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
+class FoodManager;
+
 class Prey{
 
 	private:
@@ -15,11 +17,13 @@ class Prey{
 
 
 		bool canReproduce = true;
+		bool isHungry = false;
 		sf::CircleShape body;
 	public:
 		void initialize();
 		void move(float deltatime);
-		void setDirection(float deltatime);
+		void setDirection(float deltatime, FoodManager& foodmanager);
 		void draw(sf::RenderWindow& window);
+		void goToFood(FoodManager& foodmanager);
 
 };
